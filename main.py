@@ -1,6 +1,7 @@
 from random import randint
 print('Welcome to Ugadayka\nEnter number from 1 to 100')
 x = randint(1, 100)
+counter = 0
 
 def is_valid(num):
   if num.isdigit():
@@ -10,9 +11,10 @@ def is_valid(num):
 
 while True:
   temp = input()
+  counter += 1
   if is_valid(temp):
     if int(temp) == x:
-      print('Victory\nYou: {}\tWe: {}'.format(temp, x))
+      print('Victory\nYou: {}\tWe: {}\nShot: {}'.format(temp, x, counter))
       break
     elif int(temp) > x:
       print('less')
