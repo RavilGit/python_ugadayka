@@ -2,31 +2,36 @@ from random import randint
 from os import system, name 
 from time import sleep 
 
-print('Welcome to Ugadayka\nEnter number from 1 to 100')
-
-x = randint(1, 100)
+x = 0
 counter = 0
 games = list()
+r_end = 100
+print('Welcome to Ugadayka')
 
 # define our clear function 
 def clear(): 
   if name == 'nt': 
     # for cmd system('cls')
-    _ = system('cls') 
+    _ = system('clear') 
 
-def generate_new_num():
-  return randint(1, 100)
+def generate_new_num(end):
+  return randint(1, end)
 
-def is_valid(num):
+def is_valid(num, end):
   if num.isdigit():
-    if 0 < int(num) <= 100:
+    if 0 < int(num) <= end:
       return True
   return False
 
+want_add = input('Do You want to enter end of range? y - yes | n - no\n')
+if want_add == 'y':
+  r_end = int(input('Enter end of range: '))
+print('Enter num from 1 to {}'.format(r_end))
+x = generate_new_num(r_end)
 while True:
   temp = input()
   counter += 1
-  if is_valid(temp):
+  if is_valid(temp, r_end):
     if int(temp) == x:
       print('Victory\nYou: {}\tWe: {}\nShot: {}'.format(temp, x, counter))
       games.append(counter)
@@ -35,10 +40,11 @@ while True:
       print('Do You want to play again?\nPress Y - yes')
       game = input()
       if game == 'y':
-        x = generate_new_num()
-        sleep(1) 
-        clear()
-        print('New num generated, Guess it!')
+      	r_end = int(input('Enter end of range: '))
+      	x = generate_new_num(r_end)
+      	sleep(1)
+      	clear()
+      	print('New num generated, Guess it!\nEnter num from 1 to {}'.format(r_end))
       else:
         print('-' * 70)
         print('_' * 29 + ' Your stat ' + '_' * 29)
@@ -52,9 +58,5 @@ while True:
       print('more')
   else:
     print('{} is not valid number\nEnter number in range 1 - 100:'.format(temp))
-
-# Улучшения проекта
-# Добавить возможность указания правой границы для случайного выбора числа (от 1 до n).
-
 
 # clear function code from https://www.geeksforgeeks.org/clear-screen-python/
