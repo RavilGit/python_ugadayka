@@ -60,3 +60,4 @@ while True:
     print('{} is not valid number\nEnter number in range 1 - 100:'.format(temp))
 
 # clear function code from https://www.geeksforgeeks.org/clear-screen-python/
+# final feature added on 23.03.2021
